@@ -1,0 +1,12 @@
+extends layout
+
+block content
+
+  h1= title
+  - var image_names = ["greentea.jpg","jasminetea.jpg","kashmiritea.jpg","matchtea.jpg","purpletea.jpg"]
+  - for(let i=0; i<3;i++){
+    -var num = image_names[Math.floor(Math.random() * 5)]
+    
+    img(src= "/images/"+num, alt= num, style={width: "300",height: "300"})
+  -}
+  

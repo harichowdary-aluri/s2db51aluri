@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h1= title
+  -
+    let results = [
+      {
+        "tea_flavour": "Purple Tea",
+        "tea_size": "Small",
+        "tea_cost": 2
+      },
+      {
+        "tea_flavour": "Match Tea",
+        "tea_size": "Medium",
+        "tea_cost": 6
+      },
+      {
+        "tea_flavour": "Green Tea",
+        "tea_size": "Large",
+        "tea_cost": 10
+      },                   
+    ]
+  div(class= "container-fluid")
+    div(class = "row")
+      each item,index in results
+        div(class= "col-sm-2", onclick=`buy(${index})`) #{item.tea_flavour}
+        div(class= "col-sm-2", onclick=`buy(${index})`) #{item.tea_size}
+        div(class= "col-sm-2", onclick=`buy(${index})`) #{item.tea_cost}
+
+  script.
+    function buy(itemNum){
+      alert(`You purchased item ${itemNum+1}`)
+    }      
