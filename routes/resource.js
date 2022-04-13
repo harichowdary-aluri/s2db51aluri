@@ -1,62 +1,34 @@
-const express = require('express')
-const router = express.Router()
-const Costume = require('../models/costume')
+var express = require('express');
+var router = express.Router();
+// Require controller modules.
+var api_controller = require('../controllers/api');
+var costume_controller = require('../controllers/costume');
+var mobile_controller = require('../controllers/mobile');
 
+/// API ROUTE ///
+// GET resources base.
+router.get('/', api_controller.api);
+/// costume ROUTES ///
+// POST request for creating a costume.
+router.post('/costumes', costume_controller.costume_create_post);
+// DELETE request to delete costume.
+router.delete('/costumes/:id', costume_controller.costume_delete);
+// PUT request to update costume.
+router.put('/costumes/:id', costume_controller.costume_update_put);
+// GET request for one costume.
+router.get('/costumes/:id', costume_controller.costume_detail);
+// GET request for list of all costume items.
+router.get('/costumes', costume_controller.costume_list);
 
-router.get('/', async(req,res) => {
-    try{
-           const costumes = await Costume.find()
-           res.render('costumes', { title: 'Costume Search Results', results: theCostumes });
-           res.json(costumes)
-    }catch(err){
-        res.status(500);
-        res.send('Error ' + err)
-    }
-})
-
-
-router.get('/costumes', async(req,res) => {
-    try{
-           const costume = await Costume.find(req.params.costumes)
-           res.json(costume)
-    }catch(err){
-        res.status(500);
-        res.send('Error ' + err)
-    }
-})
-
-
-router.post('/costumes', async(req,res) => {
-    const costume = new Costume({
-        // We are looking for a body, since POST does not have query parameters.
-        // Even though bodies can be in many different formats, we will be picky
-        // and require that it be a json object
-        // {"costume_type":"goat", "cost":12, "size":"large"}
-        costume_type: req.body.costume_type,
-        size: req.body.size,
-        cost: req.body.cost
-    })
-
-    try{
-        const result =  await costume.save() 
-        res.json(result)
-    }catch(err){
-        res.status(500);
-        res.send(`{"error": ${err}}`);
-    }
-})
-
-router.patch('/:id',async(req,res)=> {
-    try{
-        const costume = await Costume.findById(req.params.id) 
-        costume.sub = req.body.sub
-        const a1 = await costume.save()
-        res.json(a1)   
-    }catch(err){
-        res.status(500);
-        res.send('Error')
-    }
-
-})
-
-module.exports = router
+/// mobile ROUTES ///
+// POST request for creating a mobile.
+router.post('/mobiles', mobile_controller.mobile_create_post);
+// DELETE request to delete mobile.
+router.delete('/mobiles/:id', mobile_controller.mobile_delete);
+// PUT request to update mobile.
+router.put('/mobiles/:id', mobile_controller.mobile_update_put);
+// GET request for one mobile.
+router.get('/mobiles/:id', mobile_controller.mobile_detail);
+// GET request for list of all mobile items.
+router.get('/mobiles', mobile_controller.mobile_list);
+module.exports = router;
