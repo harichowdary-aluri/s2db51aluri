@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('s2wb51aluri:server');
+var debug = require('debug')('s2wb61mallypally:server');
 var http = require('http');
 
 /**

@@ -4,4 +4,4 @@ const mobileSchema = mongoose.Schema({
     mobile_color: String,
     mobile_cost: Number
 })
-module.exports = mongoose.model("Mobile", mobileSchema)
+module.exports = mongoose.model("mobile", mobileSchema)

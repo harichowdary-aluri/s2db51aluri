@@ -1,5 +1,5 @@
 {
-  "name": "s2wb51aluri",
+  "name": "s2wb61mallypally",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,8 +10,10 @@
     "debug": "^4.3.4",
     "express": "^4.17.3",
     "http-errors": "^2.0.0",
+    "mongo": "^0.1.0",
     "mongodb": "^4.5.0",
-    "mongoose": "^6.2.10",
+    "mongoose": "^6.3.0",
+    "mongose": "^0.0.2-security",
     "morgan": "^1.10.0",
     "pug": "^3.0.2"
   },

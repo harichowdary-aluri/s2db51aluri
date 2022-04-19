@@ -4,17 +4,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-const connectionString = "mongodb+srv://demo:demo@cluster0.ulyvs.mongodb.net/learnMongo?retryWrites=true&w=majority";
-mongoose = require('mongoose');
-mongoose.connect(connectionString,
-  { useNewUrlParser: true, useUnifiedTopology: true });
+const connectionString =  
+process.env.MONGO_CON 
+mongoose = require('mongoose'); 
+mongoose.connect(connectionString,  
+{useNewUrlParser: true, 
+useUnifiedTopology: true}); 
 
-var Costume = require("./models/costume");
-var Mobile = require("./models/mobile");
-var teaRouter = require('./routes/tea');
+var mobile = require("./models/mobile");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var mobilesRouter = require('./routes/mobiles');
+var mobileRouter = require('./routes/mobile');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
 var resourceRouter = require('./routes/resource');
@@ -31,9 +31,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/tea', teaRouter);
 app.use('/users', usersRouter);
-app.use('/mobiles', mobilesRouter);
+app.use('/mobile', mobileRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter)
 app.use('/resource', resourceRouter);
@@ -58,65 +57,30 @@ module.exports = app;
 
 /// We can seed the collection if needed on server start
 async function recreateDB() {
-  // Delete everything
-  await Costume.deleteMany();
+  
 
-  let instance1 = new Costume({ costume_type: "Mummy", size: 'large', cost: 25.4 });
-  instance1.save(function (err, doc) {
-    if (err) return console.error(err);
-    console.log("First object saved in Costume")
-  });
-
-  let instance2 = new Costume({ costume_type: "Dog", size: 'small', cost: 16 });
-  instance2.save(function (err, doc) {
-    if (err) return console.error(err);
-    console.log("Second object saved in Costume")
-  });
-
-  let instance3 = new Costume({ costume_type: "Superman", size: 'medium', cost: 12.4 });
-  instance3.save(function (err, doc) {
-    if (err) return console.error(err);
-    console.log("Third object saved in Costume")
-  });
-
-  let instance4 = new Costume({ costume_type: "Cat", size: 'large', cost: 22 });
-  instance4.save(function (err, doc) {
-    if (err) return console.error(err);
-    console.log("Fourth object saved in Costume")
-  });
 
 // Delete everything in Mobile
-  await Mobile.deleteMany();
+  await mobile.deleteMany();
 
-  let instance5 = new Mobile({ mobile_brand: "Apple", mobile_color: 'Green', mobile_cost: 3205 });
-  instance5.save(function (err, doc) {
+  let instance1 = new mobile({ mobile_brand: "Apple", mobile_color: 'Green', mobile_cost: 3205 });
+  instance1.save(function (err, doc) {
     if (err) return console.error(err);
     console.log("First object saved in Mobile")
   });
 
-  let instance6 = new Mobile({ mobile_brand: "Red mi", mobile_color: 'Red', mobile_cost: 4207 });
-  instance6.save(function (err, doc) {
+  let instance2 = new mobile({ mobile_brand: "Red mi", mobile_color: 'Red', mobile_cost: 4207 });
+  instance2.save(function (err, doc) {
     if (err) return console.error(err);
     console.log("Second object saved in Mobile")
   });
 
-  let instance7 = new Mobile({ mobile_brand: "Ream me", mobile_color: 'Gray', mobile_cost: 3034 });
-  instance7.save(function (err, doc) {
+  let instance3 = new mobile({ mobile_brand: "Ream me", mobile_color: 'Gray', mobile_cost: 3034 });
+  instance3.save(function (err, doc) {
     if (err) return console.error(err);
     console.log("Third object saved in Mobile")
-  });
-
-  let instance8 = new Mobile({ mobile_brand: "Nokia", mobile_color: 'black', mobile_cost: 1950 });
-  instance8.save(function (err, doc) {
-    if (err) return console.error(err);
-    console.log("Fourth object saved in Mobile")
   });
 }
 let reseed = true;
 if (reseed) { recreateDB(); }
 
-//Get the default connection
-var db = mongoose.connection;
-//Bind connection to error event
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once("open", function () { console.log("Connection to DB succeeded") });

@@ -6,8 +6,8 @@ block content
   - let items = results
   div(class="container-fluid")
     div(class="row")
-      each mobiles, index in items
-        div(class="col-sm-2" onclick=`buy(${index+1})`) #{mobiles.mobile_brand} - #{mobiles.mobile_color} - $#{mobiles.mobile_cost}
+      each mobile, index in items
+        div(class="col-sm-2" onclick=`buy(${index+1})`) #{mobile.mobile_brand} - #{mobile.mobile_color} - $#{mobile.mobile_cost}
   
   script.
     function buy(index){

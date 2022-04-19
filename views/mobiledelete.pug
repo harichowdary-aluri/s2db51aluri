@@ -1,0 +1,54 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let mobileid = toShow._id 
+    - let mobile_brand = toShow.mobile_brand
+    - let mobile_color = toShow.mobile_color
+    - let mobile_cost = toShow.mobile_cost
+    - let actionid = "/resource/mobile/" + mobileid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='mobileAttr mr-3') mobile ID is: 
+        div #{mobileid} 
+      div.row 
+        div(class='mobileAttr mr-3') mobile brand is: 
+        div #{mobile_brand} 
+      div.row 
+        div(class='mobileAttr mr-3') mobile color is: 
+        div #{mobile_color} 
+      div.row 
+        div(class='mobileAttr mr-3') mobile Cost is: 
+        div #{mobile_cost} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the mobile collection 
+      window.location.href='/mobiles' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/mobile' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    } 
+ 
