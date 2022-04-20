@@ -3,6 +3,7 @@ extends layout
 block content 
   h1= title 
  
+    
   - let mobileid = toShow._id 
   - let mobile_brand = toShow.mobile_brand 
   - let mobile_color = toShow.mobile_color
@@ -15,13 +16,13 @@ block content
   form(id='mobileForm', action= actionid, method="PUT") 
     div.form-group 
         label.mobileAttr(for='mobile_brand') mobile brand
-        input#mobile_brand(type='text', name='mobile_brand', value= mobile_type ) 
+        input#mobile_brand(type='text', name='mobile_brand', value= mobile_brand ) 
     div.form-group 
-        label.mobileAttr(for='size') mobile size 
-        input#mobile_color(type='text', name='size', value= mobile_color) 
+        label.mobileAttr(for='mobile_color') mobile color
+        input#mobile_color(type='text', name='mobile_color', value= mobile_color) 
     div.form-group 
-        label.mobileAttr(for='cost') mobile cost 
-        input#mobile_cost(type='number', name='cost', value= mobile_cost ) 
+        label.mobileAttr(for='mobile_cost') mobile cost 
+        input#mobile_cost(type='number', name='mobile_cost', value= mobile_cost ) 
     input(type="submit") 
  
   script. 

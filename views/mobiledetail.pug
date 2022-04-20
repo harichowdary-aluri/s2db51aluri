@@ -2,21 +2,24 @@ extends layout
  
 block content 
   h1= title 
- 
-  - let mobile_id = toShow._id 
-  - let mobile_brand = toShow.mobile_brand 
-  - let mobile_color = toShow.mobile_color
-  - let mobile_cost = toShow.mobile_cost
-  div 
-    div.row 
-      div(class='mobil_Attr mr-3') mobile_ID is: 
-      div #{mobile_id} 
-    div.row 
-      div(class='mobil_Attr mr-3') mobile_brand is: 
-      div #{mobile_brand} 
-    div.row 
-      div(class='mobil_Attr mr-3') mobile_cost is: 
-      div #{mobile_color} 
-    div.row 
-      div(class='mobil_Attr mr-3') mobile_Cost is: 
-      div #{mobile_cost} 
+  
+  if (toShow == null) 
+    h2 No instance to detail
+  else
+    - let mobile_id = toShow._id 
+    - let mobile_brand = toShow.mobile_brand 
+    - let mobile_color = toShow.mobile_color
+    - let mobile_cost = toShow.mobile_cost
+    div
+      .row 
+        div(class='mobileAttr mr-3') mobile ID is:  
+        div(class='values') #{mobile_id}
+      .row
+        div(class='mobileAttr mr-3') mobile brand is:
+        div(class='values') #{mobile_brand}
+      .row
+        div(class='mobileAttr mr-3') mobile color is:
+        div(class='values') #{mobile_color}
+      .row
+        div(class='mobileAttr mr-3') mobile cost is:
+        div(class='values') #{mobile_cost}
