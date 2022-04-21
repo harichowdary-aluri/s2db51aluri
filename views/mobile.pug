@@ -5,11 +5,13 @@ block content
   p Welcome to #{title}
   - let items = results
   div(class="container-fluid")
-    div(class="row")
+    div(class="col m-1")
       each mobile, index in items
-        div(class="col-sm-2" onclick=`buy(${index+1})`) #{mobile.mobile_brand} - #{mobile.mobile_color} - $#{mobile.mobile_cost}
+          - let destination = `dispatch(\"/mobile/update?id=${mobile._id}\")`
+          div(class="row-sm-2" class="m-1")  Item #{mobile.mobile_brand}(#{mobile.mobile_color}) is $#{mobile.mobile_cost}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
   
-  script.
-    function buy(index){
-      alert(`You purchased item ${index}`);
-    }
+  script. 
+    function dispatch(path){ 
+      window.location.href=path 
+    } 
