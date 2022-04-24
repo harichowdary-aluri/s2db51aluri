@@ -1,5 +1,5 @@
-pwd# s2wb61mallypally
+hpppned
 something good
-Link to remote heroku server-https://s2wb61mallypally.herokuapp.com/
+Link to remote heroku server-https://s2wb51aluri.herokuapp.com/
 
-My class icecream has attributes flavour(String), quantity(Number), cost(Number). 
+My class mobiles has attributes mobile_brand(String), mobile_price(Number), mobile_color(String). 
