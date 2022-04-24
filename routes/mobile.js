@@ -22,15 +22,15 @@ router.get('/', function(req, res, next) {
 router.get('/detail', mobile_controller.mobile_view_one_Page);
 
 /* GET create costume page */
-router.get('/create', mobile_controller.mobile_create_Page);
+router.get('/create',secured, mobile_controller.mobile_create_Page);
 
 /* GET costumes */
 router.get('/', mobile_controller.mobile_view_all_Page);
 
 /* GET create update page */
-router.get('/update', secured, mobile_controller.mobile_update_Page);
+router.get('/update',secured, mobile_controller.mobile_update_Page);
 
 /* GET delete costume page */
-router.get('/delete', mobile_controller.mobile_delete_Page);
+router.get('/delete',secured,mobile_controller.mobile_delete_Page);
 
 module.exports = router;
