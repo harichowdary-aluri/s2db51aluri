@@ -1,20 +1,32 @@
-extends layout
+//- extends layout
 
-block content
-  h1= title
-  p i am crazy #{title}
-  br
-  - var btnType = 'primary'
-  - var btnSize = 'lg'
-  button(type='button' class='btn btn-' + btnType + ' btn-' + btnSize, onClick = "moreClaps()") press me
-  div(id = "target") Clap for me
+//- block content
+//-   h1= title
+//-   p i am crazy #{title}
+//-   br
+//-   - var btnType = 'primary'
+//-   - var btnSize = 'lg'
+//-   button(type='button' class='btn btn-' + btnType + ' btn-' + btnSize, onClick = "moreClaps()") press me
+//-   div(id = "target") Clap for me
 
-    script.
-      var clap_count = 0;
-      function moreClaps(){
-        clap_count = clap_count + 2;
-        document.getElementById("target").innerHTML = 'Clap '+ clap_count +' times';
-      }
+//-     script.
+//-       var clap_count = 0;
+//-       function moreClaps(){
+//-         clap_count = clap_count + 2;
+//-         document.getElementById("target").innerHTML = 'Clap '+ clap_count +' times';
+//-       }
 
-  - var tea= ['tea_flavour','tea_size','tea_cost']
-  a(href='/tea') Click here to search for tea
+//-   - var tea= ['tea_flavour','tea_size','tea_cost']
+//-   a(href='/tea') Click here to search for tea
+extends layout 
+ 
+block content 
+  if (!user) 
+    a(href="/login") Login 
+    br 
+    a(href="/register") Register 
+  if (user) 
+    p You are currently logged in as #{user.username} 
+    a(href="/mobile") Take me to Mobile 
+    br 
+    a(href="/logout") Logout 
